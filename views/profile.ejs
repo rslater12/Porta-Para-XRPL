@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+	<html lang="zxx" class="no-js">
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		
+		<!-- Author Meta -->
+		<meta name="author" content="codepixer">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<!-- meta monitization -->
+		<!-- <meta name="monetization" content="$ilp.uphold.com/mbEiWZJmRzeq" /> -->
+		<title>Profile</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="/css/linearicons.css">
+			<link rel="stylesheet" href="/css/font-awesome.min.css">
+			<link rel="stylesheet" href="/css/bootstrap.css">
+			<link rel="stylesheet" href="/css/magnific-popup.css">
+			<link rel="stylesheet" href="/css/nice-select.css">					
+			<link rel="stylesheet" href="/css/animate.min.css">
+			<link rel="stylesheet" href="/css/owl.carousel.css">
+			<link rel="stylesheet" href="/css/main.css">
+			
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   <script src="https://www.yoti.com/share/client/"></script>
+   <link rel="stylesheet" type="text/css" href="/static/profile.css" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+   <script src="https://kit.fontawesome.com/fa35e16c8d.js" crossorigin="anonymous"></script>
+   
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		</head>
+		<style>
+		.ml12 {
+  font-weight: 200;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+}
+.ml12 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+		</style>
+		<body>
+		  <header id="header" id="home">
+			    <div class="container">
+			    	<div class="row align-items-center justify-content-between d-flex">
+				      <div id="logo">
+                <img src="/images/logo.png" class="rounded" alt="Porta Para XRPL Logo" width="64">
+				      </div>
+				      <nav id="nav-menu-container">
+				        <ul class="nav-menu">
+				        
+				          <li class="menu-active"><a href="/">Home</a></li>
+				          <li><a href="/aboutus">About Us</a></li>
+				          <li><a href="/login">Login</a></li>
+				          <li><a href="/legal">Legal</a></li>
+				          <li class="menu-has-children"><a href="">More</a>
+				            <ul>
+								<li><a href="/fees">Porta Para XRPLFees</a></li>
+								<li><a href="/guide">Porta Para XRPL How To Guide</a></li>
+								<li><a href="/transparency">Porta Para XRPl Transparency</a></li>
+                 <li><a href="/UPpairs">Uphold Pairs/Prices</a></li>
+								 <li><a href="/logout">Log Out</a></li>
+                 <li><a href="/deleteAccount">Delete Account</a></li>
+				            </ul>
+				          </li>
+				        </ul>
+				      </nav><!-- #nav-menu-container -->		    		
+			    	</div>
+			    </div>
+			  </header><!-- #header -->
+
+			<!-- start banner Area -->
+
+
+ <div class="text-center">
+  
+  	 <h1 class="ml12">My Profile</h1>
+		
+		</div>
+  
+
+  <div class="container border border-dark row rounded text-body text-center card shadow w-50 mx-auto well form-group">
+  <div class="col-sm-12">
+    <div class="well form-group text-body text-center card shadow">
+     <h3><span class="fa fa-user"></span> Welcome <%= user.fullname %></h3>
+
+     <p>
+      <strong>ID/Destination Tag</strong> <%= user.id %> <br>
+      <strong>username</strong> <%= user.fullname %> <br>
+      <strong>Email</strong> <%= user.username %> <br>
+     </p>
+     </div>
+
+	 
+   </div>
+  </div>
+
+  <div class="container border border-dark row rounded text-body text-center card shadow w-50 mx-auto well form-group">
+  <div class="col-sm-12">
+	<ul class="nav nav-tabs border shadow justify-content-center">
+		<li class="active text-center"><a data-toggle="tab" href="#Trustlines">XRPL</a></li>
+		<li><a data-toggle="tab" href="#UpAuth">Uphold</a></li>
+		<li><a data-toggle="tab" href="#YOTI">YOTI</a></li>
+		<li><a data-toggle="tab" href="#Dep">Deposit</a></li>
+		<li><a data-toggle="tab" href="#Wit">Withdraw</a></li>
+	  </ul>
+
+	  <div class="tab-content ">
+		<div class="tab-pane active " id="Trustlines"> 
+
+ <h3 class="text-center"><span class="fa fa-user"></span><%= user.fullname %> Make sure a Trust Line is set to Porta Para XRPL Account</h3>
+	<h3>Existing Trust Lines</h3>
+
+ <table class="table table-striped border shadow text-center">
+  <thead class="text-center">
+    <tr>
+      <th class="text-center">Asset</th>
+      <th class="text-center">Issuer</th>
+      <th class="text-center">Balance</th>
+    </tr>
+  </thead>
+  <tbody>
+		<%for (i=0; i <Trustlines.length; i++) {%>
+			
+			<tr>
+			<td><%=Trustlines[i].specification.currency%></td>
+			<td><%=Trustlines[i].specification.counterparty%></td>
+			<td><%=Trustlines[i].state.balance%></td>
+			</tr>
+
+			 <% } %>
+     
+    </tbody>
+  </table>
+  
+  <small>Delete a Trustline at Xumm Community</small>
+<br>
+ <button id="myBtn" class="btn btn-primary border border-dark btn-sm text-white" data-toggle="modal" data-target="#myModal">Set Trustline »</button>
+ <a href="https://www.xrptoolkit.com" class="btn btn-primary border border-dark btn-sm text-white" role="button">Trade on the DEX »</a>
+ <div>
+ 
+ </div>
+ <div>
+	<a href="/assets" class="btn btn-primary border border-dark btn-sm text-white" role="button">Asset Page »</a>
+ <a href="https://xumm.community" class="btn btn-primary border border-dark btn-sm text-white" role="button">Xumm Community »</a> 
+
+		</div>
+		</div>
+
+	<div class="tab-pane text-center" id="UpAuth"> 
+		<h3><span class="fa fa-user"></span><%= user.fullname %> Uphold</h3>
+		<div class="well form-group text-body text-center card shadow">
+			  
+			 <Strong>Uphold Authorisation =</Strong> <%= auth %>
+			 <div id="div" class="form-group">
+		<a href="/UPauth" role="button"> <img src="https://uphold.com/en/developer/api/documentation/images/buttons/green_bg/connect_with_uphold.png"  alt="Uphold Logo">
+		</a>
+	</div> 
+		</div>
+		<div class="well form-group text-body text-center card shadow">
+			<label>Create Uphold Cards</label>
+			<form action="/CreateCard" method="post">
+				<div class="form-group">
+				<input class="form-control" size="30" type="text" name="label" value="" placeholder="Uphold Card Name">
+				</div>
+				 <div class="form-group">
+				<input class="form-control" size="30" type="text" name="currency"  style="text-transform: uppercase" value="" placeholder="Card Currency">
+				</div>
+				<button class="btn btn-primary btn-sm"  type="submit">Create Uphold Card »</button>
+				</form>
+		</div>
+		<div class="well form-group text-body text-center card shadow">
+			<label>Create Uphold Contact to Porta Para XRPL</label>
+			<form action="/createContact" method="post">
+			<div class="form-group">
+			<input class="form-control" size="30" type="text" name="firstname" value="" placeholder="First Name">
+			</div>
+			 <div class="form-group">
+			<input class="form-control" size="30" type="text" name="lastname" value="" placeholder="Last Name">
+			</div>
+			<div class="form-group">
+			<input class="form-control" size="30" type="text" name="company" value="" placeholder="Company">
+			</div>
+			<div class="form-group">
+			<input class="form-control" size="30" type="text" name="email" value="slater.richard@outlook.com" placeholder="slater.richard@outlook.com">
+			</div>
+			
+			<button class="btn btn-primary btn-sm"  type="submit">Create Contact</button>
+			</form>
+			</div>
+
+			<div class="well form-group text-body text-center card shadow">
+		
+		<label>Cards : </label>
+		<label><%=user.fullname%>'s Uphold Cards</label>
+		<select class="form-control h-50" name="card" placeholder="card" id="card">
+		<option disabled value >Select your Uphold Card</option>
+
+		 <%for (var i=0; i <cards.length; i++) {%>
+			 
+		 <option name="card" id="card" value="<%=cards[i].id%>"> <%=cards[i].label%> Your Balance is: <%=cards[i].balance%> </option>			
+ <% } %>
+		</select>
+			</div>
+		</div>
+	
+
+			<div class="tab-pane text-center" id="YOTI"> 
+				
+	<div class="well form-group text-center">
+		<h3><span class="fa fa-user"></span><%= user.fullname %>, Confirm Your YOTI Identity</h3>
+		<a href="/kyc" class="btn btn-primary btn-sm text-white" role="button"> <img src="/static/images/yoti.png" alt="YOTI KYC" width="16" height="16"> YOTI KYC »</a>
+ </div>
+ <div class="well form-group text-center">
+	<h3><span class="fa fa-user"></span><%= user.fullname %>'s' YOTI Profile PAge</h3>
+	<a href="/yotiprofilepage" class="btn btn-primary btn-sm text-white" role="button"> <img src="/static/images/yoti.png" alt="YOTI KYC" width="16" height="16"> YOTI Profile Page »</a>
+</div>
+			</div>
+
+	<div class="tab-pane text-center" id="Dep"> 
+		<h3><span class="fa fa-user"></span><%= user.fullname %>  Fiat to IOU Transfer Deposit</h3>
+	<div class="well form-group text-center">
+		<form action="/deposit" role="form" method="post" >
+			<h3 class="ml12">Uphold payment request</h3>
+			<div class="row pb-4">
+				<div class="col-12 col-lg-8 offset-lg-2 pt-md-5 pb-md-5">
+				  <div class="card shadow">
+					<div class="card-header bg-dark text-white py-2">
+					  <b class="font-200 py-0 my-0">
+						<i class="fas fa-signature mr-1"></i>
+					   Fiat Deposit Payment 
+					  </b>
+					</div>
+			<label>Porta Para Uphold Account</label>										<!-- Email needs changing -->
+			<input class="form-control" size="30"  type="text" id="email" readonly value="xrplnfcretail@gmail.com" class="email" name="email" placeholder="Porta Para Uphold Account">	
+			<label><%=user.fullname%>'s Uphold Cards</label>
+			<select class="form-control h-50" name="card" placeholder="card" id="card">
+			<option disabled value >Select your Uphold Card</option>
+	
+			 <%for (var i=0; i <cards.length; i++) {%>
+			 <option name="card" id="card" value="<%=cards[i].id%>"> <%=cards[i].label%> Your Balance is: <%=cards[i].balance%> </option>			
+	<% } %>
+			</select>
+			<label>Deposit Amount</label>
+			<input class="form-control" size="30"  type="text" id="dpamount" value="" class="dpamount" name="dpamount"  placeholder="Deposit Amount">
+			<label for="Currency" >Your Currency</label>
+			<p>Make sure Trust Line is Set first</p>
+				   <div class="form-group">				  
+		  <select class="form-control h-50" id="trustCurrency" name="trustCurrency"  placeholder="trustCurrency">	
+		<%for (var i=0; i <cards.length; i++) {%>		 
+		<option name="" id="" value="<%=cards[i].currency%>"> <%=cards[i].currency%>  </option>			
+		  <% } %>
+	</select>
+		</div>
+		</div>
+				</div>
+				</div>
+			<button class="btn btn-primary btn-sm shadow">Create Payment to Porta Para »</button>
+			</form>
+ </div>
+ </div>
+ <div class="tab-pane text-center" id="Wit"> 
+	<h3><span class="fa fa-user"></span><%= user.fullname %> IOU to Fiat Transfer Withdrawal</h3>
+	<div class="well form-group text-center">
+		<form action="/PayReq" role="form" method="post" >
+		<h3 class="ml12">Porta Para XRPL XUMM payment request</h3>
+		<div class="row pb-4">
+    <div class="col-12 col-lg-8 offset-lg-2 pt-md-5 pb-md-5">
+      <div class="card shadow">
+        <div class="card-header bg-dark text-white py-2">
+          <b class="font-200 py-0 my-0">
+            <i class="fas fa-signature mr-1"></i>
+           IOU Withdrawl Payment 
+          </b>
+        </div>
+								<label for="Amount" >IOU Amount</label>
+								 <input autofocus type="text" class="form-control form-control-lg-" id="amount" class="amount" name="amount" placeholder="Amount">								
+								 <label for="Destination_Tag" >Your Destination Tag</label>								  
+								  <input autofocus type="text" class="form-control form-control-lg-" id="destinationtag" class="destinationtag" name="destinationtag" readonly value="<%=user.id%>">							  
+								  <label for="Memo">Your Memo</label>							
+								  <input autofocus type="text" class="form-control form-control-lg-" id="memo" class="memo" name="memo" placeholder="Memo (Optional)">								
+								<label for="card">Choose Porta Para Uphold Account</label>
+								<div class="form-group">	
+								<select class="form-control h-50" name="card" id="card" placeholder="Porta Para Account" id="Companycard">
+								  <option disabled value >Select Porta Para XRPL Account to Send Payment to</option>
+								   <%for (var i=0; i <data.length; i++) {%>						 
+								   <option name="card" id="card" value="<%=data[i].id%>"> <%=data[i].label%> </option>			
+							  <% } %>	 
+								  </select>
+								<label for="trustCurrency">Choose A Currency</label>
+								
+								  <select autofocus class="form-control h-50" id="trustCurrency" name="trustCurrency"  placeholder="Currency">	
+									<%for (var i=0; i <cards.length; i++) {%>
+								  <option name="" id="" value="<%=cards[i].currency%>"> <%=cards[i].currency%>  </option>			
+								   <% } %>
+								  </select>
+								 </div> 
+							  </div>
+								</div>
+							  </div>
+							  <button type="submit" class="btn btn-primary btn-s shadow">Withdrawal Sign Request »</button>
+							</form>
+		  </div>
+		</div>
+	</div>
+			</div>
+			</div>
+			</div>
+
+			</div
+			
+  <!-- Modal -->
+ <div id="myModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+  
+	  <!-- Modal content-->
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal">&times;</button>
+		  <h4 class="modal-title">Xumm Sign Trustline Request</h4>
+		</div>
+		<div class="modal-body">
+		  <span id="id" >Set Trustline Details</span>
+		  <div class="well form-group text-body text-center card shadow">
+			<form  action="/setIOUTrustline" role="form" method="post">
+				<label>Set Trust Currency from your Uphold Account</label>
+		 <select class="form-control h-50"  name="trustCurrency" placeholder="Set Trust Line Currency">	
+		  <option disabled value >Select Currency</option>
+		  <%for (var i=0; i <cards.length; i++) {%>
+					 
+			<option value="<%=cards[i].currency%>"> <%=cards[i].currency%>  </option>			
+		 <% } %>
+				
+		  </select>
+		
+			<div  class="form-group">
+				<label>Set Trust Amount <small>(Set Trust Amount to the Value you trust Porta Para XRPl)</small></label>
+		 <input class="form-control" size="30" type="text" name="trustAmount" value="" placeholder="Set Trust Line Amount">
+		 </div>
+		 <button class="btn btn-primary border border-dark btn-sm text-white" type="submit">Set Trust Line »</button>
+		 </form>
+		  </div>
+		 </div>
+		
+		 <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	
+	  </div>
+	</div>
+
+<!-- start footer Area -->		
+<footer class="footer-area section-gap">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3  col-md-6 col-sm-6">
+				<div class="single-footer-widget">
+					<h4 class="text-white">About Us</h4>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-3  col-md-6 col-sm-6">
+				<div class="single-footer-widget">
+					<h4 class="text-white">Top Products</h4>
+					<ul class="footer-menu">
+						<li><a href="#">Managed Website</a></li>
+						<li><a href="#">Managed Reputation</a></li>
+						<li><a href="#">Managed Tools</a></li>
+						<li><a href="#">Managed Service</a></li>
+					</ul>
+						
+				</div>
+			</div>						
+			<div class="col-lg-6  col-md-6 col-sm-6">
+				<div class="single-footer-widget">
+					<h4 class="text-white">Newsletter</h4>
+					<p class="text-white">You can trust us. we only send  offers, not a single spam.</p>
+					<div class="d-flex flex-row" id="mc_embed_signup">
+						  <form class="navbar-form" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get">
+							<div class="input-group add-on">
+								  <input class="form-control" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" type="email">
+								<div style="position: absolute; left: -5000px;">
+									<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+								</div>
+							  <div class="input-group-btn">
+								<button class="genric-btn"><span class="lnr lnr-arrow-right"></span></button>
+							  </div>
+							</div>
+							  <div class="info mt-20"></div>									    
+						  </form>
+					</div>
+				</div>
+			</div>						
+		</div>
+		<div class="footer-bottom d-flex justify-content-between align-items-center flex-wrap">
+			<p class="footer-text text-white m-0">
+				<script>document.write(new Date().getFullYear());</script> 
+			</p>
+			<div class="footer-social d-flex align-items-center">
+				<a href="#"><i class="fa fa-facebook"></i></a>
+				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="#"><i class="fa fa-dribbble"></i></a>
+				<a href="#"><i class="fa fa-behance"></i></a>
+			</div>
+		</div>
+	</div>
+</footer>	
+<!-- End footer Area -->
+  <script>
+     var divs= document.getElementsByTagName('div');
+for (var i = 0, len = divs.length; i < len; ++i) {
+    if (divs[i].innerHTML.indexOf("true") !== -1) {
+		myFunction() 	
+}
+}
+function myFunction() {
+  var x = document.getElementById("div");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}		
+
+  //Wrap every letter in a span
+    var textWrapper = document.querySelector('.ml12');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    anime.timeline({loop: true})
+      .add({
+        targets: '.ml12 .letter',
+        translateX: [40,0],
+        translateZ: 0,
+        opacity: [0,1],
+        easing: "easeOutExpo",
+        duration: 1200,
+        delay: (el, i) => 500 + 30 * i
+      }).add({
+        targets: '.ml12 .letter',
+        translateX: [0,-30],
+        opacity: [1,0],
+        easing: "easeInExpo",
+        duration: 1100,
+        delay: (el, i) => 100 + 30 * i
+      });
+   
+  </script>
+  <script src="/js/vendor/jquery-2.2.4.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="/js/vendor/bootstrap.min.js"></script>			
+			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+  			<script src="/js/easing.min.js"></script>			
+			<script src="/js/hoverIntent.js"></script>
+			<script src="/js/superfish.min.js"></script>	
+			<script src="/js/jquery.ajaxchimp.min.js"></script>
+			<script src="/js/jquery.magnific-popup.min.js"></script>	
+			<script src="/js/owl.carousel.min.js"></script>			
+			<script src="/js/jquery.sticky.js"></script>
+			<script src="/js/jquery.nice-select.min.js"></script>			
+			<script src="/js/parallax.min.js"></script>	
+			<script src="/js/waypoints.min.js"></script>
+			<script src="/js/jquery.counterup.min.js"></script>			
+			<script src="/js/mail-script.js"></script>	
+			<script src="/js/main.js"></script>	
+  
+  </body>
+  </html>
+  

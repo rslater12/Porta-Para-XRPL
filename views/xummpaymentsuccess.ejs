@@ -1,0 +1,93 @@
+<html>
+<head>
+	<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+   
+		<link rel="shortcut icon" href="img/fav.png">
+		<meta http-equiv="refresh" content="10; URL=https://portaparaxrpl.hopto.org:3000/profile" />
+		
+		<!-- Author Meta -->
+		<meta name="author" content="codepixer">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>XRPL Payment Success</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="/css/linearicons.css">
+			<link rel="stylesheet" href="/css/font-awesome.min.css">
+			<link rel="stylesheet" href="/css/bootstrap.css">
+			<link rel="stylesheet" href="/css/magnific-popup.css">
+			<link rel="stylesheet" href="/css/nice-select.css">					
+			<link rel="stylesheet" href="/css/animate.min.css">
+			<link rel="stylesheet" href="/css/owl.carousel.css">
+			<link rel="stylesheet" href="/css/main.css">
+			
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+   <script>!function(e,o,t){e[t]=function(n,r){var c={sandbox:"https://sandbox-merchant.revolut.com/embed.js",prod:"https://merchant.revolut.com/embed.js",dev:"https://merchant.revolut.codes/embed.js"},d=o.createElement("script");d.id="revolut-checkout",d.src=c[r]||c.prod,d.async=!0,o.head.appendChild(d);var s={then:function(r,c){d.onload=function(){r(e[t](n))},d.onerror=function(){o.head.removeChild(d),c&&c(new Error(t+" is failed to load"))}}};return"function"==typeof Promise?Promise.resolve(s):s}}(window,document,"RevolutCheckout");</script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+</head>
+<style>
+		.ml12 {
+  font-weight: 200;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+}
+
+.ml12 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+		</style>
+<body>
+
+<div class="container text-center">
+<div class="page-header text-center">
+ <img src="/images/logo.png" class="rounded" alt="Porta Para XRPL Logo">
+ </div>	
+ <h3 class="ml12">Porta Para XRPL IOU Transfer Success</h3>
+ 	
+<code> <pre>WIP</pre></code>
+
+ <a href="/profile" role="button" class="primary-btn btn text-white">Profile</a>
+ </div>
+ </body>
+ 
+<script>
+	
+    
+  //Wrap every letter in a span
+    var textWrapper = document.querySelector('.ml12');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+    anime.timeline({loop: true})
+      .add({
+        targets: '.ml12 .letter',
+        translateX: [40,0],
+        translateZ: 0,
+        opacity: [0,1],
+        easing: "easeOutExpo",
+        duration: 1200,
+        delay: (el, i) => 500 + 30 * i
+      }).add({
+        targets: '.ml12 .letter',
+        translateX: [0,-30],
+        opacity: [1,0],
+        easing: "easeInExpo",
+        duration: 1100,
+        delay: (el, i) => 100 + 30 * i
+      });
+   </script>
+ </html>

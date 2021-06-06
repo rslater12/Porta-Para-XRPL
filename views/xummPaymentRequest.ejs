@@ -1,0 +1,107 @@
+<html>
+<head>
+<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <meta http-equiv="refresh" content="1; URL=https://portaparaxrpl.hopto.org:3000/xummPaymentQR" />
+		<link rel="shortcut icon" href="img/fav.png">
+		<!-- Author Meta -->
+		<meta name="author" content="codepixer">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>XUMM IOU Payment Request</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/fa35e16c8d.js" crossorigin="anonymous"></script>
+  </head>
+ 
+<body>
+
+
+<div class="text-center">
+<img src="/images/xummlogo/xumm-logo.svg" class="img-fluid" alt="XUMM Logo"  width=150" height="150">
+	</div>			
+   
+   <div class="row pb-4">
+    <div class="col-12 col-lg-8 offset-lg-2 pt-md-5 pb-md-5">
+      <div class="card shadow">
+
+        
+        <div class="card-header bg-dark text-white py-2">
+          <b class="font-200 py-0 my-0">
+            <i class="fas fa-signature mr-1"></i>
+            Payment Sign Request
+          </b>
+        </div>
+   
+   
+                                          
+         
+    <span class="text-center" id="name" >XUMM IOU Payment Request</span>
+    <br></br>
+   
+    
+<a class="text-center" id="href" href="https://xumm.app">
+
+         <img id="image" alt="Xumm-QRcode" width=150" height="150">
+      </a>
+     <h1 class="h4 text-center text-primary font-weight-normal">
+          <i class="d-none d-sm-inline-block fa fa-arrow-up"></i>
+          Scan this QR with <b class="font-logo">xumm</b>
+        </h1>
+        <div class="text-muted- text-dark font-weight-bold pb-3" v-if="!opened && !resolved">
+                  <div v-if="!options.onlyMonitorSigning">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                    
+                      Waiting for you to scan and open the 
+                            <code class="text-primary"><b class="text-primary">Payment</b></code>
+                          to 
+                            <code class="text-primary"><b>r3EJnqFUfuad8pVKA4LMHynucozvcaH1N7</b></code>
+                          with the <b class="font-logo">xumm</b> app.
+                    
+                  </div>
+                  </div>
+ </div>
+ </div>
+    </div>   
+    <div class="text-center">
+ <span>Verification Expires in: </span>
+      <span id="countdown">300</span> second<span id="plural">s</span> 
+      </div>
+
+</body>
+</html>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	
+    var socket = io('https://portaparaxrpl.hopto.org:3000');
+    
+    socket.on('PQR', function (data) {
+    	
+    	document.getElementById('image').src=(data);
+    	document.getElementById('name').innerHTML=(data);
+    	document.getElementById("href").setAttribute("href",data);
+
+    });
+
+    var seconds = document.getElementById("countdown").textContent;
+    var countdown = setInterval(function() {
+        seconds--;
+        (seconds == 1) ? document.getElementById("plural").textContent = "": document.getElementById("plural").textContent = "s";
+        document.getElementById("countdown").textContent = seconds;
+        if (seconds <= 0) clearInterval(countdown);
+    }, 1000);
+    
+    </script>

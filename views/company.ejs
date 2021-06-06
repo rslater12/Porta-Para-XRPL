@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+	<html lang="zxx" class="no-js">
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="img/fav.png">
+		<!-- Author Meta -->
+		<meta name="author" content="codepixer">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>Porta Para XRPL</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="/css/linearicons.css">
+			<link rel="stylesheet" href="/css/font-awesome.min.css">
+			<link rel="stylesheet" href="/css/bootstrap.css">
+			<link rel="stylesheet" href="/css/magnific-popup.css">
+			<link rel="stylesheet" href="/css/nice-select.css">					
+			<link rel="stylesheet" href="/css/animate.min.css">
+			<link rel="stylesheet" href="/css/owl.carousel.css">
+			<link rel="stylesheet" href="/css/main.css">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		</head>
+		<body>
+
+
+<div class="container">
+<div class="page-header text-center">
+ 
+ <img src="/images/logo.png" class="rounded" alt="Porta Para XRPL Logo">
+ 
+ </div>
+				
+ <div class="text-center">
+  
+  	 <h1>Company Admin Page</h1>
+		
+		</div>
+		<div class="text-center">
+		<form action="/STR" role="form" method="post" enctype="multipart/form-data">
+                                  <div class="form-group row">
+                                    <label for="Rate" class="col-sm-3 col-lg-2 col-form-label col-form-label-lg-">Set Rate</label>
+                                    <input autofocus type="text" class="form-control form-control-lg-" id="transferrate" class="transferrate" name="transferrate" placeholder="Transfer Rate e.g(1005000000)">
+                                    
+                                      <button type="submit" class="btn btn-primary float-right shadow">set rate »</button>
+                                    </div>
+                                  </div>
+                                </form>
+                                
+                                <div class="text-center" id="AccountInfo">
+                              <h3> Require Destination Tag = <%= requireDestinationTag%></h3>
+								<h3> Default Rippling = <%= defaultRipple%></h3>
+								 <h3> Transfer Rate @ <%= transferRate%></h3>
+								 </div>
+		</div>
+		</div>
+   <div class="row text-body text-center">
+   <div class="col-sm-12">
+    <div class="well">
+    <form  action="/setTrustline" role="form" method="post" enctype="multipart/form-data">
+    <h3><span class="fa fa-user"></span>  Trust Line </h3>
+    <div  class="form-group">
+		<label>Set Trust Line</label>
+ <input class="form-control" size="30" type="text" name="trustAmount" value="" placeholder="Set Trust Line Amount">
+ </div>
+ <button class="btn btn-primary btn-sm"  type="submit">Set Trust Line </button>
+ </form>
+  </div>
+  </div>
+  </div>
+  
+  </body>
+  </html>
+  
