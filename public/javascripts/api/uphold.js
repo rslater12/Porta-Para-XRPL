@@ -191,8 +191,8 @@ async function CreateandSendTransaction(PayOut, Currency){
         port: 587,
         secure: false, // use SSL
         auth: {
-            user: 'portaparaxrpl@gmail.com',
-            pass: 'Rachelslater@12'
+            user: '',
+            pass: ''
         }
     });
 
