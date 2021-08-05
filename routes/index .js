@@ -181,7 +181,7 @@ res.redirect('/contactus');
 });
 
 /* Get User Profile */
-router.get('/profile', isLoggedIn, async function(req, res){
+router.get('/profile', isLoggedIn, twoFACheck, async function(req, res){
 	
 var w_id  = req.user.id;
 let cards = "";
@@ -249,7 +249,7 @@ res.render('profile.ejs', {user: req.user, Trustlines: Trustlines, cards: cards,
  });
 
  /*Asset Page */
- router.get('/assets',  isLoggedIn, function(req, res, next) {	
+ router.get('/assets',  isLoggedIn, twoFACheck, function(req, res, next) {	
 	var w_id  = req.user.id;
 	var srcAdd = con.query("SELECT useraddress, accessToken FROM `users` WHERE `id` = ?", w_id , async function(err, result, fields) {
 		if (err) {
@@ -269,7 +269,7 @@ res.render('assets', {user: req.user, Trustlines: Trustlines});
 	});
 
 /* get Uphold Return Page */
-router.get('/UpReturn', isLoggedIn, function(req, res, next) {
+router.get('/UpReturn', isLoggedIn, twoFACheck, function(req, res, next) {
 	//COMPLETE:
 	var w_id  = req.user.id;
 	//auth code
@@ -360,12 +360,14 @@ router.post('/login', passport.authenticate('local-login', {
 });
 
 //xumm 2FA
-router.get('/verify', isLoggedIn, async function(req, res){
-
+router.get('/verify', isLoggedIn,twoFACheck,  async function(req, res){
+	req.session.result = {
+		twoFA: false
+	};
 res.render('verify.ejs', {});
 });
 
-router.get('/authenticate', isLoggedIn, async function(req, res){
+router.get('/authenticate', isLoggedIn, twoFACheck, async function(req, res){
 	
 	var w_id  = req.user.id;
 	var cookie = req.cookies.io
@@ -476,6 +478,10 @@ router.get('/authenticate', isLoggedIn, async function(req, res){
 						client.close()
 						console.log('echo-protocol Client Closed');
 							console.log("Redirect User to Profile Page")
+							/*Pass received data to twoFAcheck function */
+						req.session.result = {
+							twoFA: true
+						};
 							return res.redirect('/profile')
 					}
 					else if(Loginaddress !== Useraddress){
@@ -676,6 +682,18 @@ if(req.isAuthenticated())
 res.redirect('/login');
 }
 
+   /* Middleware 2fa check */
+   function twoFACheck(req, res, next){
+	var result = req.session.result;
+	if(result.twoFA === true){
+		console.log("Worked")
+		return next();
+	}
+	else {
+	res.redirect('/logout');
+	}
+   }
+
 /* Register */
 router.get('/register', function(req, res){
 	res.render('register.ejs', {message: req.flash('Sign Up To Porta Para Retail')}); 
@@ -695,15 +713,16 @@ router.get('/fail', function(req, res){
 	errorLogger.error("Login Attempt Failed")
 res.render('fail.ejs');
 });
+
 /* My SQL Login code */
 main();
 
 async function main() {
-	 var dois = await funcaoDois();
+	 var dois = await funcodois();
 	 return  dois;
 	 }
 	 
-   async function funcaoDois() {
+   async function funcodois() {
 	 await sleep(500);
    
 	passport.serializeUser(function(user, done){
@@ -826,7 +845,7 @@ async function main() {
   }
 
 /* Set Trust Line*/
-router.post('/setIOUTrustline', isLoggedIn, async function(req, res) {
+router.post('/setIOUTrustline', isLoggedIn, twoFACheck, async function(req, res) {
 	setCurrency = req.body.trustCurrency; 
 	trustValue = req.body.trustAmount;
 	
@@ -839,12 +858,12 @@ res.render('signTrust.ejs');
 });
 
 /* sign trustline Page*/
-router.get('/signTrust', isLoggedIn, async function(req, res) {
+router.get('/signTrust', isLoggedIn, twoFACheck, async function(req, res) {
 	
 	res.render('signTrust.ejs');
    });
 
-router.get('/createTrustlineQR', isLoggedIn, async function (req,res, next){
+router.get('/createTrustlineQR', isLoggedIn, twoFACheck, async function (req,res, next){
 
 	var w_id  = req.user.id;
 	var cookie = req.cookies.io
@@ -963,7 +982,7 @@ router.get('/createTrustlineQR', isLoggedIn, async function (req,res, next){
 			});
 
    /*Make Payment */
-router.post('/PayReq', isLoggedIn, function(req, res) {
+router.post('/PayReq', isLoggedIn, twoFACheck, function(req, res) {
 	var Amount = req.body.amount;
 	var dstTag = req.body.destinationtag;
 	var Memo = req.body.memo;
@@ -981,12 +1000,12 @@ router.post('/PayReq', isLoggedIn, function(req, res) {
 	});
 
 /*Get Xumm Payment request Page*/
-router.get('/xummPaymentRequest', isLoggedIn, function(req, res) {
+router.get('/xummPaymentRequest', isLoggedIn, twoFACheck, function(req, res) {
 res.render('xummPaymentRequest', {user: req.user});
 });
 
 /*Create XUMm PAyment QR */
-router.get('/xummPaymentQR', isLoggedIn, function(req, res) {
+router.get('/xummPaymentQR', isLoggedIn, twoFACheck, function(req, res) {
 	var w_id  = req.user.id;
 	var result = req.session.result;
 	var cookie = req.cookies.io
@@ -1248,7 +1267,7 @@ catch (error) {
 	});
 
 /*Post Deposit */
-router.post('/deposit', isLoggedIn, async function(req, res, next) {
+router.post('/deposit', isLoggedIn, twoFACheck, async function(req, res, next) {
 	//BUG: Client side, i think values can be minpulated through trading, by selecting a diferent currency v the card ID, then trade for better rates for teh actuall currecny then trade this out?? not sure if its there or just me or in withdrawals?? Need to check this.
 	var Email = req.body.email; // this will be the company email so input box can be removed.
 	var depositamount = req.body.dpamount;
@@ -1268,7 +1287,7 @@ req.session.result = {
 });
 
 /*Get Xumm Payment request Page*/
-router.get('/fiatPayment', isLoggedIn, async function(req, res) {
+router.get('/fiatPayment', isLoggedIn, twoFACheck, async function(req, res) {
 	var result = req.session.result;
 	var cookie = req.cookies.io
 	socketID = cookie
@@ -1490,17 +1509,17 @@ router.get('/fiatPayment', isLoggedIn, async function(req, res) {
 	
 	});
 
-router.get('/paymenterror', isLoggedIn, async function(req, res, next) {	
+router.get('/paymenterror', isLoggedIn, twoFACheck, async function(req, res, next) {	
 res.render('paymenterror'); 
 	});
 
-router.get('/paymentsuccess', isLoggedIn, async function(req, res, next) {	
+router.get('/paymentsuccess', isLoggedIn, twoFACheck, async function(req, res, next) {	
 res.render('paymentsuccess'); 
 			});
 
 //TEST:
 /* Set Transfer Rate*/
-router.post('/STR', isLoggedIn, async function(req, res, ) {
+router.post('/STR', isLoggedIn, twoFACheck, async function(req, res, ) {
 TransferRate = req.body.transferrate;
 await con.query;
 		var sec;
@@ -1545,6 +1564,27 @@ api.submit(signedTransaction).then(quit, fail);
 res.redirect('/company');
 	});
 
+	/* GET login page. */
+router.get('/companylogin', function(req, res, task){
+	
+	res.render('companylogin.ejs', {message:req.flash('loginMessage'), task: task});//
+	});
+	
+	 /* post login page. */
+	router.post('/companylogin', passport.authenticate('local-login', {
+	  successRedirect: '/verify', //TODO: this needs a new 2fa redirect or its just going to take us to the profile page.
+	  failureRedirect: '/fail',
+	  failureFlash: true
+	}),
+	  function(req, res){
+	   if(req.body.remember){
+		req.session.cookie.maxAge = 1000 * 60 * 60;
+	   }else{
+		req.session.cookie.expires = false;
+	   }
+	   res.redirect('/company');
+	});
+
 //TEST:
 /*Access Level */
 function Access(req, res, next){
@@ -1556,18 +1596,8 @@ function Access(req, res, next){
 	}
    }
 
-   //FIXME: i dont work. probs needs a different method.
-   /* Middleware 2fa check */
-   function twoFACheck(req, res, next){
-	var result = req.session.result;
-	if(result.twoFA == true){
-		return next();
-	}
-	res.redirect('/logout');
-   }
- 
 /* company admin */
- router.get('/company', isLoggedIn, Access,function(req, res, task){
+ router.get('/company', isLoggedIn, Access, twoFACheck, function(req, res, task){
 	 companyLogger.info("Company Page Accessed by : "+req.user.id+" "+req.user.fullname)
 	requireDestinationTag;
 	defaultRipple;
@@ -1575,8 +1605,151 @@ function Access(req, res, next){
 	 res.render('company.ejs', {message:req.flash('loginMessage'), task: task, requireDestinationTag: JSON.stringify(requireDestinationTag, undefined, 2), defaultRipple: JSON.stringify(defaultRipple, undefined, 2), transferRate: JSON.stringify(transferRate, undefined, 2)});//
 	});
 
+//#3 Iv added the company admin register page but any body can register for a company account, maybe its best to remove company register and only have company login??
+
+	/* Register */
+router.get('/companyregister', function(req, res){
+	res.render('companyregister.ejs', {message: req.flash('Sign Up To Porta Para Retail')}); 
+   });
+
+router.post('/companysignup', passport.authenticate('local-signup1', {
+	successRedirect: '/new',
+	failureRedirect: '/register',
+	failureFlash: true
+   }));
+
+/* My SQL Company Login code */
+mainCompanyLogin();
+
+async function mainCompanyLogin() {
+	 var dois = await functiondois();
+	 return  dois;
+	 }
+	 
+   async function functiondois() {
+	 await sleep(500);
+   
+	passport.serializeUser(function(user, done){
+	 done(null, user.id);
+	});
+
+	passport.deserializeUser(function(id, done){
+	 connection.query("SELECT * FROM users WHERE id = ? ", [id],
+	  function(err, rows){
+	   done(err, rows[0]);
+	  });
+	});
+
+	passport.use(
+		'local-signup1',
+		new LocalStrategy({
+		 usernameField : 'username',
+		 passwordField: 'password',
+		 fullnameField: 'fullname',
+		 access_levelField: 'access_level',
+		 passReqToCallback: true
+		},
+		 
+		function(req, username, password, done, fullname,){
+		 connection.query("SELECT * FROM users WHERE username = ? ", 
+		 [username], function(err, rows){
+		  if(err)
+		   return done(err);
+		  if(rows.length){
+		   return done(null, false, req.flash('signupMessage', 'Sorry this is already taken!'));
+		  }else{
+		   var newUserMysql = {
+			username: username,
+			password: bcrypt.hashSync(password, null, null),
+		    fullname: req.body.fullname,
+			access_level: 2
+		   };
+		   
+		   var sql = "INSERT INTO users (username, password, fullname, access_level) VALUES ('"+newUserMysql.username+"', '"+newUserMysql.password+"','"+newUserMysql.fullname+"','"+newUserMysql.access_level+"')";
+		   connection.query(sql, function (err, result) {
+			if (err) {
+				DBLogger.error("DataBase Error")
+			   };
+
+			newUserMysql.id = result.insertId;
+			console.log('\x1b[32m%s\x1b[0m',result.insertId);
+			
+	 // Create a SMTP transport object
+		const transport = nodemailer.createTransport({
+		  host: 'smtp.gmail.com',
+		  port: 587,
+		  secure: false, // use SSL
+		  auth: {
+			  user: 'portaparaxrpl@gmail.com',
+			  pass: '****'
+		  }
+	  });
+
+	  // Message object
+		var message = {
+
+		// sender info
+		from: 'portaparaxrpl@gmail.com', //change
+
+		// Comma separated list of recipients
+		to: newUserMysql.username,
+
+		// Subject of the message
+		subject: 'Validate Your Porta Para XRPL Account', //'Nodemailer is unicode friendly ✔', 
+
+		// HTML body
+		  html:'<p><UUID>Hello</UUID> '+ newUserMysql.username +' ! </p>'+
+		  '<p>Click <a href="https://' + IP + ':3000/checkAccount?id='+result.insertId+'"> here </a> to check your Porta Para XRPL Account</p>'
+		};
+
+		console.log('Sending Mail');
+		transport.sendMail(message, function(error){
+		if(error){
+		console.log('Error occured');
+		console.log(error.message);
+		return;
+		}
+		console.log('Message sent successfully!');
+
+		});
+
+		return done(null, newUserMysql);
+		});
+	  }
+	 });
+	})
+   );
+
+   passport.use(
+	'local-login',
+	new LocalStrategy({
+	 usernameField : 'username',
+	 passwordField: 'password',
+	 passReqToCallback: true
+	},
+	function(req, username, password, done){
+	 connection.query("SELECT * FROM users WHERE username = ? ", [username],
+	 function(err, rows){
+	  if(err)
+	   return done(err);
+	  if(!rows.length){
+	   return done(null, false, req.flash('loginMessage', 'No User Found'));
+	  }
+	  if(rows[0].check_acc == 0){
+		return done(null, false, req.flash('loginMessage', 'Please check your email to validate your Porta Para XRPL Account!'));
+	  }
+	  if(!bcrypt.compareSync(password, rows[0].password))
+	   return done(null, false, req.flash('loginMessage', 'Wrong Password'));
+
+	  return done(null, rows[0]);
+	 });
+	})
+   );
+   }
+   
+
  /* Uphold Authorisation */
-router.get('/UPauth', isLoggedIn, function(req, res, next) {
+router.get('/UPauth', isLoggedIn, twoFACheck, function(req, res, next) {
 	let linkAuthorisationCode = 'https://sandbox.uphold.com/authorize/'+client_id+'?state='+state+'&scope='+scope
 		var w_id = req.user.id;
 		var accessToken = con.query("SELECT `accessToken` FROM `users`WHERE `id` = ?", w_id, async function(err, result, fields, task) {
@@ -1599,7 +1772,7 @@ router.get('/UPauth', isLoggedIn, function(req, res, next) {
 		})
 });	 
 
-/* Create Card. */
+/* Create Card. */ 
 router.post('/CreateCard', function(req, res, next) {
 	var label = req.body.label;
 	var currency = req.body.currency;
@@ -1638,7 +1811,7 @@ res.render('profile.ejs', {user: req.user, Trustlines: Trustlines, cards: cards,
 });
 
 /* Set create contact*/
-router.post('/createContact', isLoggedIn, async function(req, res, next) {
+router.post('/createContact', isLoggedIn, twoFACheck, async function(req, res, next) {
 	
 	var w_id  = req.user.id;
 	var firstname = req.body.firstName;
@@ -1691,7 +1864,7 @@ router.post('/createContact', isLoggedIn, async function(req, res, next) {
 
 //TEST:
 /* Delete User Account*/
-router.get('/deleteAccount', isLoggedIn, function (req, res) { //isLoggedIn
+router.get('/deleteAccount', isLoggedIn, twoFACheck, function (req, res) { //isLoggedIn
 	res.render('deleteAccount', {user: req.user})
 })
 
@@ -1828,7 +2001,7 @@ res.redirect('https://www.yoti.com/connect/9113a13c-ec01-48ea-800c-471e0f474ede/
    })
 
    /*YOTI token */
-router.get('/yotiprofile', isLoggedIn, (req, res) => {
+router.get('/yotiprofile', isLoggedIn, twoFACheck, (req, res) => {
 const { token } = req.query;
 var w_id = req.user.id
 	  
@@ -1840,7 +2013,7 @@ res.redirect('/yotiprofilepage')
 })
 
 /* YOTI Profile PAge */
-router.get('/yotiprofilepage', isLoggedIn, (req, res) => {
+router.get('/yotiprofilepage', isLoggedIn, twoFACheck, (req, res) => {
 	var w_id = req.user.id
 	var YT = con.query("SELECT YT FROM `users` WHERE id = '" + w_id + "'" , async function(err, result, fields) {
 	  if (err) throw err;
@@ -1851,7 +2024,8 @@ router.get('/yotiprofilepage', isLoggedIn, (req, res) => {
 	 
 			}
 }
-await YT
+await YT 
+//FIXME YT need changing and not saving to teh DB, we need to save the remember ID LN-2053
 if (!YT) {
  res.render('yotierror.ejs', {
 error: 'No token has been provided.',
@@ -1877,6 +2051,7 @@ function saveImage(selfie) {
 	  const profile = activityDetails.getProfile();
 	  const { selfie } = userProfile;
 	 console.log( activityDetails.getRememberMeId())
+//FIXME YT need changing and not saving to teh DB, we need to save the remember
 	  if (typeof selfie !== 'undefined') {
 		saveImage(selfie);
 	  }
